@@ -49,7 +49,7 @@ export default function ComingSoon() {
       </div>
 
       <div className="max-w-4xl w-full">
-        <main className="text-center">
+        <main id="main-content" className="text-center">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -59,7 +59,7 @@ export default function ComingSoon() {
             <div className="relative w-48 h-16">
               <Image
                 src="/logo.png"
-                alt="Niyilor Logo"
+                alt="Niyilor Logo - Creative Advertising Agency"
                 fill
                 className="object-contain"
                 priority
@@ -123,14 +123,19 @@ export default function ComingSoon() {
               onSubmit={(e) => e.preventDefault()}
               className="relative p-1 rounded-full bg-white/5 border border-white/10 flex items-center focus-within:border-accent/50 transition-all shadow-2xl"
             >
+              <label htmlFor="email-input" className="sr-only">Email address for waitlist</label>
               <input
+                id="email-input"
                 type="email"
                 placeholder="Join the waitlist"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 bg-transparent px-6 py-3 text-white placeholder:text-slate-500 outline-none w-full font-medium"
               />
-              <button className="px-8 py-3 rounded-full bg-accent text-white font-bold text-sm hover:opacity-90 transition-opacity whitespace-nowrap shadow-lg shadow-blue-500/20 active:scale-95 duration-200">
+              <button
+                type="submit"
+                className="px-8 py-3 rounded-full bg-accent text-white font-bold text-sm hover:opacity-90 transition-opacity whitespace-nowrap shadow-lg shadow-blue-500/20 active:scale-95 duration-200"
+              >
                 Notify Me
               </button>
             </form>
@@ -146,15 +151,22 @@ export default function ComingSoon() {
             transition={{ delay: 0.9 }}
             className="mt-20 flex justify-center gap-8"
           >
-            {["instagram", "twitter", "linkedin", "facebook"].map((social) => (
+            {[
+              { id: "instagram", name: "Instagram" },
+              { id: "twitter", name: "Twitter" },
+              { id: "linkedin", name: "LinkedIn" },
+              { id: "facebook", name: "Facebook" }
+            ].map((social) => (
               <a
-                key={social}
-                href="#"
+                key={social.id}
+                href={`https://${social.id}.com/niyilor`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-slate-500 hover:text-white transition-colors group"
-                aria-label={social}
+                aria-label={`Follow Niyilor Advertising on ${social.name}`}
               >
                 <Icon
-                  icon={`simple-icons:${social}`}
+                  icon={`simple-icons:${social.id}`}
                   className="w-6 h-6 transition-transform group-hover:scale-110"
                 />
               </a>
@@ -166,7 +178,7 @@ export default function ComingSoon() {
       {/* Footer */}
       <footer className="fixed bottom-8 left-0 right-0 text-center">
         <p className="text-xs text-slate-600 font-bold tracking-[0.2em] uppercase">
-          © 2024 NIYILOR ADVERTISING. EST. IN CREATIVITY.
+          © {new Date().getFullYear()} NIYILOR ADVERTISING. EST. IN CREATIVITY.
         </p>
       </footer>
     </div>
