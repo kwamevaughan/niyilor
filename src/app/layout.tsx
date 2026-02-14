@@ -198,6 +198,23 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
 
+        {/* Service Worker Registration */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                    console.log('SW registered');
+                  }).catch(function(err) {
+                    console.log('SW registration failed', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
+
         <Navbar />
 
         {children}
