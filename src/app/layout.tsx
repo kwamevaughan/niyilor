@@ -47,43 +47,24 @@ const ethosNova = localFont({
   variable: "--font-ethos",
 });
 
-// SEO Best Practices for Next.js App Router
+// SEO Best Practices
 export const metadata: Metadata = {
-  // Metadata Base - Required for resolving relative URLs in Open Graph images
-  metadataBase: new URL("https://niyilor.com"), // Update with your actual domain
-
-  // Title Configuration - Uses template for automatic page-specific titles
+  metadataBase: new URL("https://niyilor.com"),
   title: {
     default: "Niyilor Advertising | Full-Service Creative Agency | #WeAreNiyilor",
-    template: "%s | Niyilor Advertising", // Automatically appends brand name to page titles
+    template: "%s | Niyilor Advertising",
   },
-
-  // Meta Description - Concise, keyword-rich (150-160 chars recommended)
   description: "Niyilor is a full-service advertising agency specializing in creative solutions for businesses of all sizes. Your one-stop shop for all things creative.",
-
-  // Keywords - Helps with SEO (though less important than before)
   keywords: [
-    "advertising agency",
-    "creative agency",
-    "marketing solutions",
-    "brand development",
-    "digital marketing",
-    "creative services",
-    "Niyilor",
-    "Ghana",
-    "Accra",
-    "West Africa",
+    "advertising agency", "creative agency", "marketing solutions", "brand development",
+    "digital marketing", "creative services", "Niyilor", "Ghana", "Accra", "West Africa",
   ],
-
-  // Author & Creator
   authors: [{ name: "Niyilor Advertising" }],
   creator: "Niyilor Advertising",
   publisher: "Niyilor Advertising",
-
-  // Robots Configuration - Controls search engine crawling
   robots: {
-    index: true, // Allow indexing
-    follow: true, // Allow following links
+    index: true,
+    follow: true,
     googleBot: {
       index: true,
       follow: true,
@@ -92,38 +73,30 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-
-  // Open Graph - For social media sharing (Facebook, LinkedIn, etc.)
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://niyilor.com", // Update with your actual domain
+    url: "https://niyilor.com",
     siteName: "Niyilor Advertising",
     title: "Niyilor Advertising | Full-Service Creative Agency | #WeAreNiyilor",
     description: "A full-service advertising agency in Accra, Ghana, specializing in creative solutions for businesses of all sizes.",
     images: [
       {
-        url: "/og-image.png", // Create this image: 1200x630px recommended
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Niyilor Advertising - Creative Solutions",
       },
     ],
   },
-
-  // Twitter Card - For Twitter/X sharing
   twitter: {
     card: "summary_large_image",
     title: "Niyilor Advertising | Full-Service Creative Agency | #WeAreNiyilor",
     description: "A full-service advertising agency that specializes in creative solutions for businesses of all sizes.",
-    images: ["/twitter-image.png"], // Create this image: 1200x600px recommended
-    creator: "@niyilor", // Update with your actual Twitter handle
+    images: ["/twitter-image.png"],
+    creator: "@niyilor",
   },
-
-  // Manifest - PWA support
-  manifest: "/manifest.json", // Create this file if you want PWA support
-
-  // Icons - Favicon and app icons
+  manifest: "/manifest.json",
   icons: {
     icon: [
       { url: "/favicon.ico" },
@@ -134,16 +107,8 @@ export const metadata: Metadata = {
       { url: "/apple-touch-icon.png" },
     ],
   },
-
-  // Verification - Add your verification codes when available
-  // verification: {
-  //   google: "your-google-verification-code",
-  //   yandex: "your-yandex-verification-code",
-  //   bing: "your-bing-verification-code",
-  // },
 };
 
-// Viewport Configuration - Separate export (Next.js 13+ requirement)
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -159,7 +124,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Structured data for SEO (JSON-LD)
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -173,10 +137,10 @@ export default function RootLayout({
       addressRegion: "Greater Accra",
       addressCountry: "GH"
     },
-    areaServed: ["GH", "West Africa"], // Improves visibility for regional searches
+    areaServed: ["GH", "West Africa"],
     foundingDate: "2024",
     sameAs: [
-      "https://www.instagram.com/niyilor.visuals", // Updated to the handle found in search
+      "https://www.instagram.com/niyilor.visuals",
       "https://www.twitter.com/niyilor",
       "https://www.linkedin.com/company/niyilor",
       "https://www.facebook.com/niyilor",
@@ -191,14 +155,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={`${ethosNova.variable} ${miguerSans.variable}`}>
-      <body className="antialiased">
-        {/* Structured Data for SEO */}
+      <body className="antialiased bg-background">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
 
-        {/* Service Worker Registration */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -215,9 +177,10 @@ export default function RootLayout({
           }}
         />
 
-        <Navbar />
-
-        {children}
+        <div className="w-full relative min-h-screen overflow-x-hidden">
+          <Navbar />
+          {children}
+        </div>
       </body>
     </html>
   );
